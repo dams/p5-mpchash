@@ -8,7 +8,7 @@ my $buckets = [ map { "shard-$_" } 1..6000 ];
 
 my $mpc = Algorithm::ConsistentHash::MultiProbe->new($buckets, [1, 2], 21);
 
-chomp(my @compat = do { local(@ARGV, $/) = "$Bin/testdata/compat.out"; <> });
+chomp(my @compat = split /\n/, do { local(@ARGV, $/) = "$Bin/testdata/compat.out"; <> });
 
 for (my $i=0; $i < @compat; $i++) {
     my $b = $buckets->[$i];
